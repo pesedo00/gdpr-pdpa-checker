@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDPR x PDPA Gap Analysis Report</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; font-size: 14px; color: #1e293b; background: #f8fafc; padding: 40px; }
+        header { margin-bottom: 32px; }
+        header h1 { font-size: 24px; color: #1e293b; margin-bottom: 8px; }
+        header p { color: #64748b; font-size: 13px; }
+        .summary { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+        .summary-card { background: white; border-radius: 8px; padding: 20px 24px; flex: 1; min-width: 150px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .summary-card .number { font-size: 32px; font-weight: bold; color: #2563eb; }
+        .summary-card .label { font-size: 12px; color: #64748b; margin-top: 4px; }
+        .critical-gaps { background: #fff1f2; border-left: 4px solid #9f1239; border-radius: 4px; padding: 16px 20px; margin-bottom: 32px; }
+        .critical-gaps h3 { color: #9f1239; margin-bottom: 8px; }
+        .critical-gaps ul { padding-left: 20px; }
+        .critical-gaps li { margin-bottom: 4px; color: #1e293b; }
+        .area { background: white; border-radius: 8px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .area h2 { font-size: 16px; margin-bottom: 16px; color: #1e3a5f; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; font-size: 12px; color: #64748b; padding: 8px 12px; border-bottom: 1px solid #e2e8f0; }
+        td { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: top; font-size: 13px; }
+        .row-found { background: #f0fdf4; }
+        .row-not-found { background: #fff1f2; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; }
+        .badge.found { background: #dcfce7; color: #166534; }
+        .badge.not-found { background: #fee2e2; color: #991b1b; }
+        .badge.equivalent { background: #dcfce7; color: #166534; }
+        .badge.partial { background: #fef3c7; color: #b45309; }
+        .badge.absent { background: #fee2e2; color: #991b1b; }
+        .badge.critical { background: #fee2e2; color: #991b1b; }
+        .badge.major { background: #fef3c7; color: #b45309; }
+        .badge.minor { background: #e0f2fe; color: #0369a1; }
+        .context { color: #475569; font-style: italic; }
+        footer { margin-top: 40px; text-align: center; color: #94a3b8; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>GDPR x PDPA Gap Analysis Report</h1>
+        <p>Source: https://www.grab.com/sg/terms-policies/privacy-notice/</p>
+        <p>Generated: 07 April 2026, 15:11</p>
+    </header>
+
+    <div class="summary">
+        <div class="summary-card">
+            <div class="number">19</div>
+            <div class="label">Total Items</div>
+        </div>
+        <div class="summary-card">
+            <div class="number">14</div>
+            <div class="label">Found</div>
+        </div>
+        <div class="summary-card">
+            <div class="number">5</div>
+            <div class="label">Not Found</div>
+        </div>
+        <div class="summary-card">
+            <div class="number">73.7%</div>
+            <div class="label">Coverage</div>
+        </div>
+        <div class="summary-card">
+            <div class="number">2</div>
+            <div class="label">Critical Gaps</div>
+        </div>
+    </div>
+
+    <div class="critical-gaps">
+        <h3>Critical Gaps</h3>
+        <ul><li><strong>3.1</strong> — Are retention periods specified for each category of personal data?</li><li><strong>5.2</strong> — Is the adequate transfer mechanism identified?</li></ul>
+    </div>
+
+    
+        <div class="area">
+            <h2>Purpose Limitation</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>GDPR Ref</th>
+                        <th>Status</th>
+                        <th>Keywords Found</th>
+                        <th>Severity</th>
+                        <th>PDPA Status</th>
+                        <th>Context</th>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                    <tr class="row-found">
+                        <td>1.1</td>
+                        <td>Are the purposes of processing specified, explicit and legitimate?</td>
+                        <td><small>Art. 5(1)(b)</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>purpose, we use your data, we collect</small></td>
+                        <td><span class="badge critical">Critical</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">iers or any information that may indicate device or app modification); telematics data (such as speed, acceleration and braking data) collected through devices installed in vehicles for the following purposes: to ensure that vehicles are maintained appropriately and serviced in a timely fashion; to ...</small></td>
+                    </tr>
+            
+                    <tr class="row-not-found">
+                        <td>1.2</td>
+                        <td>Are data used only for purposes compatible with the original collection?</td>
+                        <td><small>Art. 5(1)(b), Art. 6(4)</small></td>
+                        <td><span class="badge not-found">✗ Not Found</span></td>
+                        <td><small>—</small></td>
+                        <td><span class="badge major">Major</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">—</small></td>
+                    </tr>
+            
+                    <tr class="row-found">
+                        <td>1.3</td>
+                        <td>Is the legal basis stated for each distinct purpose?</td>
+                        <td><small>Art. 6(1)</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>legal basis, legitimate interest, consent, contract</small></td>
+                        <td><span class="badge critical">Critical</span></td>
+                        <td><span class="badge absent">Absent</span></td>
+                        <td><small class="context">, and to facilitate communication with your teen (via push notifications and/or in-app/direct calls). We may collect additional personal data on a need-to basis, which we would ensure that there is a legal basis when doing so. By allowing your teen to be onboarded onto our platform, you, in your cap...</small></td>
+                    </tr>
+            
+                    <tr class="row-found">
+                        <td>1.4</td>
+                        <td>If legitimate interest is invoked, is the balancing test explained?</td>
+                        <td><small>Art. 6(1)(f), Recital 47</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>legitimate interest</small></td>
+                        <td><span class="badge major">Major</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">service providers (“ you ”). We process Personal Data with your consent or as allowed by law, such as to: Meet legal requirements Enter into or fulfill our contractual obligations to you Fulfill our legitimate interests or in the interest of others. I. COLLECTION OF PERSONAL DATA We collect your Per...</small></td>
+                    </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="area">
+            <h2>Consent Language</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>GDPR Ref</th>
+                        <th>Status</th>
+                        <th>Keywords Found</th>
+                        <th>Severity</th>
+                        <th>PDPA Status</th>
+                        <th>Context</th>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                    <tr class="row-found">
+                        <td>2.1</td>
+                        <td>Is consent freely given, specific, informed and unambiguous?</td>
+                        <td><small>Art. 7, Art. 4(11)</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>you agree, by using</small></td>
+                        <td><span class="badge critical">Critical</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">ble laws. In the event that you are required to furnish any documentation or information to us for any Purpose which may contain such sensitive Personal Data (which is not required for that Purpose), you agree to redact such sensitive Personal Data before providing such documentation or information ...</small></td>
+                    </tr>
+            
+                    <tr class="row-found">
+                        <td>2.2</td>
+                        <td>Can consent be withdrawn as easily as it was given?</td>
+                        <td><small>Art. 7(3)</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>withdraw, unsubscribe</small></td>
+                        <td><span class="badge major">Major</span></td>
+                        <td><span class="badge equivalent">Equivalent</span></td>
+                        <td><small class="context">e laws and regulations, you may be entitled to: inquire about the processing of your Personal Data and be provided with a copy of it; request correction or deletion; restrict or object to processing; withdraw consent ( where processing is based on consent); request a transfer of your data to another...</small></td>
+                    </tr>
+            
+                    <tr class="row-not-found">
+                        <td>2.3</td>
+                        <td>Is children's consent treated separately with parental authorisation?</td>
+                        <td><small>Art. 8</small></td>
+                        <td><span class="badge not-found">✗ Not Found</span></td>
+                        <td><small>—</small></td>
+                        <td><span class="badge major">Major</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">—</small></td>
+                    </tr>
+            
+                    <tr class="row-found">
+                        <td>2.4</td>
+                        <td>Is consent not conditioned on contract execution where unnecessary?</td>
+                        <td><small>Art. 7(4), Recital 43</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>required</small></td>
+                        <td><span class="badge major">Major</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">card information). For example, if you are a user, we may verify your identity through selfie images as an additional layer of protection, or in accordance with Grab’s Know Your Customer procedure as required by applicable financial regulations. If you are a driver-partner, you may be asked to authe...</small></td>
+                    </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="area">
+            <h2>Data Retention</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>GDPR Ref</th>
+                        <th>Status</th>
+                        <th>Keywords Found</th>
+                        <th>Severity</th>
+                        <th>PDPA Status</th>
+                        <th>Context</th>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                    <tr class="row-not-found">
+                        <td>3.1</td>
+                        <td>Are retention periods specified for each category of personal data?</td>
+                        <td><small>Art. 5(1)(e)</small></td>
+                        <td><span class="badge not-found">✗ Not Found</span></td>
+                        <td><small>—</small></td>
+                        <td><span class="badge critical">Critical</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">—</small></td>
+                    </tr>
+            
+                    <tr class="row-found">
+                        <td>3.2</td>
+                        <td>Where fixed periods are not possible, are the criteria for determining duration stated?</td>
+                        <td><small>Art. 13(2)(a), Art. 14(2)(a)</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>legal purposes</small></td>
+                        <td><span class="badge major">Major</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">rotect your Personal Data, improve and enhance the safety and security of our Services, develop new features, products and services, and facilitate the development of insurance and finance solutions. Legal purposes We may use the Personal Data we collect for legal purposes such as to: prevent, detec...</small></td>
+                    </tr>
+            
+                    <tr class="row-not-found">
+                        <td>3.3</td>
+                        <td>Are deletion or anonymisation procedures at expiry described?</td>
+                        <td><small>Art. 5(1)(e), Recital 39</small></td>
+                        <td><span class="badge not-found">✗ Not Found</span></td>
+                        <td><small>—</small></td>
+                        <td><span class="badge major">Major</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">—</small></td>
+                    </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="area">
+            <h2>Third-Party Sharing</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>GDPR Ref</th>
+                        <th>Status</th>
+                        <th>Keywords Found</th>
+                        <th>Severity</th>
+                        <th>PDPA Status</th>
+                        <th>Context</th>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                    <tr class="row-found">
+                        <td>4.1</td>
+                        <td>Are categories of third-party recipients identified?</td>
+                        <td><small>Art. 13(1)(e), Art. 14(1)(e)</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>third parties, partners, service providers, vendors</small></td>
+                        <td><span class="badge critical">Critical</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">information may include your username, contact number, birthdate and location. This helps us to keep you safe and share updates about our Services. In some cases, we may share your data with trusted third parties like Driver or Delivery-Partners to complete your bookings. When we do, we will make su...</small></td>
+                    </tr>
+            
+                    <tr class="row-found">
+                        <td>4.2</td>
+                        <td>Does transfer to third parties have its own legal basis?</td>
+                        <td><small>Art. 6(1), Art. 28</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>disclose, share</small></td>
+                        <td><span class="badge major">Major</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">beneficiaries of any use of our Services. If you provide us with their Personal Data, you represent and warrant that you have obtained their consent for their Personal Data to be collected, used and disclosed as set out in this Privacy Notice . Personal Data of Teens Information for parents / guardi...</small></td>
+                    </tr>
+            
+                    <tr class="row-found">
+                        <td>4.3</td>
+                        <td>Are data processors (or at least their categories) named?</td>
+                        <td><small>Art. 28(1)</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>processors, service providers</small></td>
+                        <td><span class="badge major">Major</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">providers and business partners We may provide Personal Data to our vendors, consultants, marketing partners, research firms, and other service providers or business partners. This includes: payment processors and facilitators; debt collectors; credit bureaus, payment network providers, alternative ...</small></td>
+                    </tr>
+            
+                    <tr class="row-found">
+                        <td>4.4</td>
+                        <td>Does the policy distinguish controller-to-controller from controller-to-processor transfers?</td>
+                        <td><small>Art. 4(7)-(8), Art. 26</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>affiliates, partners</small></td>
+                        <td><span class="badge minor">Minor</span></td>
+                        <td><span class="badge absent">Absent</span></td>
+                        <td><small class="context">b SG Terms and Policies Privacy Notice Privacy Notice Effective Date: 8 October 2025 This Privacy Notice and its Addendums (“ Privacy Notice ”) explain how Grab Holdings Limited and its subsidiaries, affiliates, associated companies and jointly controlled entities (“ Grab Group and Associates ”, “ G...</small></td>
+                    </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="area">
+            <h2>Cross-Border Transfers</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>GDPR Ref</th>
+                        <th>Status</th>
+                        <th>Keywords Found</th>
+                        <th>Severity</th>
+                        <th>PDPA Status</th>
+                        <th>Context</th>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                    <tr class="row-found">
+                        <td>5.1</td>
+                        <td>Is transfer outside the EEA explicitly mentioned?</td>
+                        <td><small>Art. 44</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>transfer, international</small></td>
+                        <td><span class="badge critical">Critical</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">reatens the life, health or safety of a person; or where it is necessary in the public interest (e.g. in a public health crisis, for contact tracing purposes and safeguarding our community). Business transfers We may share your Personal Data with other parties, in connection with any acquisitions, s...</small></td>
+                    </tr>
+            
+                    <tr class="row-not-found">
+                        <td>5.2</td>
+                        <td>Is the adequate transfer mechanism identified?</td>
+                        <td><small>Art. 45-46</small></td>
+                        <td><span class="badge not-found">✗ Not Found</span></td>
+                        <td><small>—</small></td>
+                        <td><span class="badge critical">Critical</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">—</small></td>
+                    </tr>
+            
+                    <tr class="row-found">
+                        <td>5.3</td>
+                        <td>Where no adequacy decision exists, are appropriate safeguards indicated?</td>
+                        <td><small>Art. 46(2)</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>safeguards, protection, contractual obligations</small></td>
+                        <td><span class="badge critical">Critical</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">nsure these transfers comply with applicable laws and regulations. This includes having a lawful basis for transfer, conducting impact assessments and putting appropriate technical and organizational safeguards to ensure an adequate level of protection for your Personal Data. Our lawful basis will b...</small></td>
+                    </tr>
+            
+                    <tr class="row-found">
+                        <td>5.4</td>
+                        <td>If derogations are used, are they limited to occasional and necessary transfers?</td>
+                        <td><small>Art. 49</small></td>
+                        <td><span class="badge found">✓ Found</span></td>
+                        <td><small>legal obligation</small></td>
+                        <td><span class="badge major">Major</span></td>
+                        <td><span class="badge partial">Partial</span></td>
+                        <td><small class="context">r the business-related expense, Grab independently determines how and why it processes the User’s Personal Data (e.g. for service fulfillment, safety, billing or analytics) in accordance with its own legal obligations and privacy practices, not on the instructions of the Client. Accordingly, Grab is...</small></td>
+                    </tr>
+            
+                </tbody>
+            </table>
+        </div>
+        
+
+    <footer>
+        <p>This report is a structured working tool for a student research project. It does not constitute legal advice.</p>
+    </footer>
+</body>
+</html>

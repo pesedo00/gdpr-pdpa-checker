@@ -1,0 +1,410 @@
+{
+    "areas": [
+        {
+            "id": "1",
+            "name": "Purpose Limitation",
+            "items": [
+                {
+                    "id": "1.1",
+                    "question": "Are the purposes of processing specified, explicit and legitimate?",
+                    "gdpr_ref": [
+                        "Art. 5(1)(b)"
+                    ],
+                    "keywords": [
+                        "purpose",
+                        "we use your data",
+                        "we process for",
+                        "we collect"
+                    ],
+                    "severity": "critical",
+                    "pdpa_ref": [
+                        "s18",
+                        "s20"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "1.2",
+                    "question": "Are data used only for purposes compatible with the original collection?",
+                    "gdpr_ref": [
+                        "Art. 5(1)(b)",
+                        "Art. 6(4)"
+                    ],
+                    "keywords": [
+                        "further processing",
+                        "additional use",
+                        "secondary purpose",
+                        "additional purpose"
+                    ],
+                    "severity": "major",
+                    "pdpa_ref": [
+                        "s18",
+                        "s20"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "1.3",
+                    "question": "Is the legal basis stated for each distinct purpose?",
+                    "gdpr_ref": [
+                        "Art. 6(1)"
+                    ],
+                    "keywords": [
+                        "legal basis",
+                        "legitimate interest",
+                        "consent",
+                        "contract"
+                    ],
+                    "severity": "critical",
+                    "pdpa_ref": [
+                        "s13",
+                        "s14",
+                        "s15",
+                        "s16",
+                        "s17"
+                    ],
+                    "pdpa_status": "absent"
+                },
+                {
+                    "id": "1.4",
+                    "question": "If legitimate interest is invoked, is the balancing test explained?",
+                    "gdpr_ref": [
+                        "Art. 6(1)(f)",
+                        "Recital 47"
+                    ],
+                    "keywords": [
+                        "legitimate interest",
+                        "balancing test",
+                        "we have assessed"
+                    ],
+                    "severity": "major",
+                    "pdpa_ref": [
+                        "First Schedule PDPA"
+                    ],
+                    "pdpa_status": "partial"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "name": "Consent Language",
+            "items": [
+                {
+                    "id": "2.1",
+                    "question": "Is consent freely given, specific, informed and unambiguous?",
+                    "gdpr_ref": [
+                        "Art. 7",
+                        "Art. 4(11)"
+                    ],
+                    "keywords": [
+                        "you agree",
+                        "by using",
+                        "tick the box",
+                        "opt-in",
+                        "by providing"
+                    ],
+                    "severity": "critical",
+                    "pdpa_ref": [
+                        "s13",
+                        "s20"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "2.2",
+                    "question": "Can consent be withdrawn as easily as it was given?",
+                    "gdpr_ref": [
+                        "Art. 7(3)"
+                    ],
+                    "keywords": [
+                        "withdraw",
+                        "revoke",
+                        "unsubscribe",
+                        "opt-out"
+                    ],
+                    "severity": "major",
+                    "pdpa_ref": [
+                        "s16"
+                    ],
+                    "pdpa_status": "equivalent"
+                },
+                {
+                    "id": "2.3",
+                    "question": "Is children's consent treated separately with parental authorisation?",
+                    "gdpr_ref": [
+                        "Art. 8"
+                    ],
+                    "keywords": [
+                        "children",
+                        "minors",
+                        "under 16",
+                        "parental consent",
+                        "child"
+                    ],
+                    "severity": "major",
+                    "pdpa_ref": [
+                        "s13"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "2.4",
+                    "question": "Is consent not conditioned on contract execution where unnecessary?",
+                    "gdpr_ref": [
+                        "Art. 7(4)",
+                        "Recital 43"
+                    ],
+                    "keywords": [
+                        "required to proceed",
+                        "mandatory",
+                        "you must agree",
+                        "required",
+                        "necessary for service"
+                    ],
+                    "severity": "major",
+                    "pdpa_ref": [
+                        "s13",
+                        "s18"
+                    ],
+                    "pdpa_status": "partial"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "name": "Data Retention",
+            "items": [
+                {
+                    "id": "3.1",
+                    "question": "Are retention periods specified for each category of personal data?",
+                    "gdpr_ref": [
+                        "Art. 5(1)(e)"
+                    ],
+                    "keywords": [
+                        "retained for",
+                        "stored for",
+                        "deleted after",
+                        "kept until",
+                        "kept as long as necessary"
+                    ],
+                    "severity": "critical",
+                    "pdpa_ref": [
+                        "s25"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "3.2",
+                    "question": "Where fixed periods are not possible, are the criteria for determining duration stated?",
+                    "gdpr_ref": [
+                        "Art. 13(2)(a)",
+                        "Art. 14(2)(a)"
+                    ],
+                    "keywords": [
+                        "criteria used to determine",
+                        "as long as necessary",
+                        "legal purposes",
+                        "business purposes"
+                    ],
+                    "severity": "major",
+                    "pdpa_ref": [
+                        "s25"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "3.3",
+                    "question": "Are deletion or anonymisation procedures at expiry described?",
+                    "gdpr_ref": [
+                        "Art. 5(1)(e)",
+                        "Recital 39"
+                    ],
+                    "keywords": [
+                        "deleted",
+                        "anonymized",
+                        "anonymised",
+                        "erased",
+                        "purged",
+                        "remove"
+                    ],
+                    "severity": "major",
+                    "pdpa_ref": [
+                        "s25"
+                    ],
+                    "pdpa_status": "partial"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "name": "Third-Party Sharing",
+            "items": [
+                {
+                    "id": "4.1",
+                    "question": "Are categories of third-party recipients identified?",
+                    "gdpr_ref": [
+                        "Art. 13(1)(e)",
+                        "Art. 14(1)(e)"
+                    ],
+                    "keywords": [
+                        "third parties",
+                        "partners",
+                        "service providers",
+                        "vendors"
+                    ],
+                    "severity": "critical",
+                    "pdpa_ref": [
+                        "s20",
+                        "s18"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "4.2",
+                    "question": "Does transfer to third parties have its own legal basis?",
+                    "gdpr_ref": [
+                        "Art. 6(1)",
+                        "Art. 28"
+                    ],
+                    "keywords": [
+                        "data processors",
+                        "on our behalf",
+                        "under our instructions",
+                        "disclose",
+                        "share"
+                    ],
+                    "severity": "major",
+                    "pdpa_ref": [
+                        "s13",
+                        "s14",
+                        "s15",
+                        "s16",
+                        "s17"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "4.3",
+                    "question": "Are data processors (or at least their categories) named?",
+                    "gdpr_ref": [
+                        "Art. 28(1)"
+                    ],
+                    "keywords": [
+                        "processors",
+                        "sub-processors",
+                        "appointed by us",
+                        "service providers",
+                        "processing on our behalf"
+                    ],
+                    "severity": "major",
+                    "pdpa_ref": [
+                        "PDPC Data Intermediary"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "4.4",
+                    "question": "Does the policy distinguish controller-to-controller from controller-to-processor transfers?",
+                    "gdpr_ref": [
+                        "Art. 4(7)-(8)",
+                        "Art. 26"
+                    ],
+                    "keywords": [
+                        "joint controllers",
+                        "independent controllers",
+                        "affiliates",
+                        "partners"
+                    ],
+                    "severity": "minor",
+                    "pdpa_ref": [],
+                    "pdpa_status": "absent"
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "name": "Cross-Border Transfers",
+            "items": [
+                {
+                    "id": "5.1",
+                    "question": "Is transfer outside the EEA explicitly mentioned?",
+                    "gdpr_ref": [
+                        "Art. 44"
+                    ],
+                    "keywords": [
+                        "transfer",
+                        "international",
+                        "outside the EEA",
+                        "third country",
+                        "outside Singapore",
+                        "overseas transfer"
+                    ],
+                    "severity": "critical",
+                    "pdpa_ref": [
+                        "s26"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "5.2",
+                    "question": "Is the adequate transfer mechanism identified?",
+                    "gdpr_ref": [
+                        "Art. 45-46"
+                    ],
+                    "keywords": [
+                        "adequacy decision",
+                        "standard contractual clauses",
+                        "SCCs",
+                        "BCRs",
+                        "comparable protection",
+                        "contractual safeguards"
+                    ],
+                    "severity": "critical",
+                    "pdpa_ref": [
+                        "s26",
+                        "PDPA Regulations 2021"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "5.3",
+                    "question": "Where no adequacy decision exists, are appropriate safeguards indicated?",
+                    "gdpr_ref": [
+                        "Art. 46(2)"
+                    ],
+                    "keywords": [
+                        "appropriate safeguards",
+                        "SCCs",
+                        "certification",
+                        "safeguards",
+                        "protection",
+                        "contractual obligations"
+                    ],
+                    "severity": "critical",
+                    "pdpa_ref": [
+                        "s26"
+                    ],
+                    "pdpa_status": "partial"
+                },
+                {
+                    "id": "5.4",
+                    "question": "If derogations are used, are they limited to occasional and necessary transfers?",
+                    "gdpr_ref": [
+                        "Art. 49"
+                    ],
+                    "keywords": [
+                        "explicit consent for transfer",
+                        "necessary for contract",
+                        "important public interest",
+                        "legal obligation"
+                    ],
+                    "severity": "major",
+                    "pdpa_ref": [
+                        "s26"
+                    ],
+                    "pdpa_status": "partial"
+                }
+            ]
+        }
+    ]
+}
