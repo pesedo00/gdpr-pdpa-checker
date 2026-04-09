@@ -68,7 +68,6 @@ def generate_html(results: list[dict], summary: dict, policy_source: str) -> str
                         <th>Keywords Found</th>
                         <th>Severity</th>
                         <th>PDPA Status</th>
-                        <th>Context</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,9 +77,6 @@ def generate_html(results: list[dict], summary: dict, policy_source: str) -> str
             keywords_found = ", ".join(
                 item["found_keywords"]) if item["found_keywords"] else "—"
             gdpr_refs = ", ".join(item["gdpr_ref"])
-            context = item["context"][:300] + \
-                "..." if len(item["context"]) > 300 else item["context"]
-            context = context if context else "—"
 
             areas_html += f"""
                     <tr class="{'row-found' if item['status'] == 'found' else 'row-not-found'}">
@@ -91,7 +87,6 @@ def generate_html(results: list[dict], summary: dict, policy_source: str) -> str
                         <td><small>{keywords_found}</small></td>
                         <td>{severity_badge(item['severity'])}</td>
                         <td>{pdpa_badge(item['pdpa_status'])}</td>
-                        <td><small class="context">{context}</small></td>
                     </tr>
             """
 
