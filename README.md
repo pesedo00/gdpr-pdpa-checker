@@ -2,7 +2,7 @@
 
 ## Live Demo
 
-[Live Demo](https://pesedo00.github.io/gdpr-pdpa-checker)
+[Live Demo](https://pesedo00.github.io/gdpr-pdpa-checker/)
 
 ### How to use the web tool
 
