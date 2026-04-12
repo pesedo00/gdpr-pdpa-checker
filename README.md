@@ -1,5 +1,19 @@
 # GDPR × PDPA Privacy Policy Analyzer
 
+## Live Demo
+
+[Live Demo](https://pesedo00.github.io/gdpr-pdpa-checker)
+
+### How to use the web tool
+
+1. Open the URL above in your browser.
+2. Paste the full text of a privacy policy into the text area.
+3. Click **Analyze** to run the gap analysis.
+
+The tool will instantly show you coverage percentage, a per-area breakdown table, and a list of critical gaps — no account or install required.
+
+---
+
 A Python tool that analyzes a privacy policy against a structured checklist
 of obligations from both GDPR (EU) and PDPA (Singapore), and generates a
 side-by-side gap analysis report.

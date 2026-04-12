@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDPR × PDPA Privacy Policy Analyzer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f6f8;
+      color: #1a1a2e;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 28px 40px 24px;
+      border-bottom: 3px solid #4361ee;
+    }
+    header h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.3px; }
+    header p { margin-top: 6px; font-size: 0.875rem; color: #a0aec0; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+    /* Input section */
+    .input-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 28px 32px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      margin-bottom: 28px;
+    }
+    .input-card label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      color: #2d3748;
+    }
+    .input-card textarea {
+      width: 100%;
+      height: 180px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 7px;
+      padding: 12px 14px;
+      font-size: 0.875rem;
+      font-family: inherit;
+      resize: vertical;
+      outline: none;
+      transition: border-color .2s;
+      color: #1a202c;
+      background: #fafbfc;
+    }
+    .input-card textarea:focus { border-color: #4361ee; background: #fff; }
+    .input-card textarea::placeholder { color: #a0aec0; }
+
+    .btn-row { margin-top: 16px; display: flex; align-items: center; gap: 14px; }
+    button#analyzeBtn {
+      background: #4361ee;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 11px 28px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+    }
+    button#analyzeBtn:hover { background: #3451d1; }
+    button#analyzeBtn:active { transform: scale(.98); }
+    button#clearBtn {
+      background: none;
+      border: 1.5px solid #e2e8f0;
+      color: #718096;
+      border-radius: 7px;
+      padding: 10px 20px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+    button#clearBtn:hover { border-color: #cbd5e0; color: #4a5568; }
+
+    #error-msg {
+      display: none;
+      color: #c53030;
+      font-size: 0.85rem;
+      margin-top: 10px;
+    }
+
+    /* Results */
+    #results { display: none; }
+
+    /* Summary cards */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 20px 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+      text-align: center;
+    }
+    .stat-card .stat-val {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-card .stat-label {
+      font-size: 0.775rem;
+      color: #718096;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      font-weight: 600;
+    }
+    .stat-card.blue .stat-val   { color: #4361ee; }
+    .stat-card.green .stat-val  { color: #38a169; }
+    .stat-card.red .stat-val    { color: #e53e3e; }
+    .stat-card.orange .stat-val { color: #dd6b20; }
+
+    /* Progress bar */
+    .progress-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 24px 28px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+      margin-bottom: 24px;
+    }
+    .progress-card h3 { font-size: 0.875rem; font-weight: 600; color: #4a5568; margin-bottom: 14px; }
+    .progress-bar-wrap {
+      width: 100%;
+      background: #edf2f7;
+      border-radius: 99px;
+      height: 18px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width .5s ease;
+    }
+    .progress-pct {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-top: 10px;
+    }
+
+    /* Area sections */
+    .area-section {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .area-header {
+      padding: 14px 24px;
+      background: #f7f8fa;
+      border-bottom: 1px solid #e8ecf0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .area-header h3 { font-size: 0.95rem; font-weight: 700; color: #1a1a2e; }
+    .area-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: #ebf4ff;
+      color: #2b6cb0;
+      border-radius: 99px;
+      padding: 2px 9px;
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: #f7f8fa; }
+    th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: #718096;
+      font-weight: 700;
+      border-bottom: 1px solid #e8ecf0;
+      white-space: nowrap;
+    }
+    td {
+      padding: 11px 14px;
+      font-size: 0.845rem;
+      border-bottom: 1px solid #f0f2f5;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr.row-critical { background: #fff5f5; }
+    tr.row-major    { background: #fffaf0; }
+    tr.row-minor    { background: #fff; }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      border-radius: 99px;
+      padding: 2px 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: .3px;
+      white-space: nowrap;
+    }
+    .badge-critical { background: #fed7d7; color: #c53030; }
+    .badge-major    { background: #feebc8; color: #c05621; }
+    .badge-minor    { background: #e2e8f0; color: #4a5568; }
+    .badge-found    { background: #c6f6d5; color: #276749; }
+    .badge-not_found{ background: #fed7d7; color: #c53030; }
+    .badge-equivalent { background: #bee3f8; color: #2c5282; }
+    .badge-partial  { background: #feebc8; color: #c05621; }
+    .badge-absent   { background: #e2e8f0; color: #4a5568; }
+
+    .keywords-list {
+      font-size: 0.78rem;
+      color: #276749;
+      font-style: italic;
+    }
+    .question-cell { max-width: 280px; }
+    .ref-cell { font-size: 0.78rem; color: #718096; white-space: nowrap; }
+
+    /* Critical gaps section */
+    .critical-section {
+      background: #fff5f5;
+      border: 1.5px solid #fed7d7;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-top: 24px;
+      margin-bottom: 32px;
+    }
+    .critical-section h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #c53030;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gap-item {
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #feb2b2;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+    }
+    .gap-item:last-child { margin-bottom: 0; }
+    .gap-item .gap-id {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #c53030;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .gap-item .gap-question { font-size: 0.875rem; font-weight: 600; color: #1a202c; }
+    .gap-item .gap-refs {
+      font-size: 0.78rem;
+      color: #718096;
+      margin-top: 6px;
+    }
+
+    .no-gaps {
+      color: #276749;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 12px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #a0aec0;
+      font-size: 0.78rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>GDPR × PDPA Privacy Policy Analyzer</h1>
+  <p>Paste a privacy policy below to run a keyword-based gap analysis against GDPR and PDPA obligations.</p>
+</header>
+
+<div class="container">
+  <div class="input-card">
+    <label for="policyText">Privacy Policy Text</label>
+    <textarea id="policyText" placeholder="Paste the full text of a privacy policy here…"></textarea>
+    <div id="error-msg">Please paste some policy text before analyzing.</div>
+    <div class="btn-row">
+      <button id="analyzeBtn" onclick="runAnalysis()">Analyze</button>
+      <button id="clearBtn" onclick="clearAll()">Clear</button>
+    </div>
+  </div>
+
+  <div id="results">
+    <!-- Summary cards -->
+    <div class="summary-grid">
+      <div class="stat-card blue">
+        <div class="stat-val" id="stat-total">—</div>
+        <div class="stat-label">Total checks</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-val" id="stat-found">—</div>
+        <div class="stat-label">Found</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-val" id="stat-not-found">—</div>
+        <div class="stat-label">Not found</div>
+      </div>
+      <div class="stat-card orange">
+        <div class="stat-val" id="stat-critical">—</div>
+        <div class="stat-label">Critical gaps</div>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-card">
+      <h3>GDPR Coverage</h3>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="progress-pct" id="progress-pct">0%</div>
+    </div>
+
+    <!-- Per-area tables -->
+    <div id="area-tables"></div>
+
+    <!-- Critical gaps -->
+    <div class="critical-section">
+      <h2>&#9888; Critical Gaps</h2>
+      <div id="critical-list"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Not legal advice &mdash; student research project &bull; GDPR × PDPA
+</footer>
+
+<script>
+// ─── Embedded checklist ────────────────────────────────────────────────────
+const CHECKLIST = {
+  "areas": [
+    {
+      "id": "1",
+      "name": "Purpose Limitation",
+      "items": [
+        {
+          "id": "1.1",
+          "question": "Are the purposes of processing specified, explicit and legitimate?",
+          "gdpr_ref": ["Art. 5(1)(b)"],
+          "keywords": ["purpose", "we use your data", "we process for", "we collect"],
+          "severity": "critical",
+          "pdpa_ref": ["s18", "s20"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "1.2",
+          "question": "Are data used only for purposes compatible with the original collection?",
+          "gdpr_ref": ["Art. 5(1)(b)", "Art. 6(4)"],
+          "keywords": ["further processing", "additional use", "secondary purpose", "additional purpose"],
+          "severity": "major",
+          "pdpa_ref": ["s18", "s20"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "1.3",
+          "question": "Is the legal basis stated for each distinct purpose?",
+          "gdpr_ref": ["Art. 6(1)"],
+          "keywords": ["legal basis", "legitimate interest", "consent", "contract"],
+          "severity": "critical",
+          "pdpa_ref": ["s13", "s14", "s15", "s16", "s17"],
+          "pdpa_status": "absent"
+        },
+        {
+          "id": "1.4",
+          "question": "If legitimate interest is invoked, is the balancing test explained?",
+          "gdpr_ref": ["Art. 6(1)(f)", "Recital 47"],
+          "keywords": ["legitimate interest", "balancing test", "we have assessed"],
+          "severity": "major",
+          "pdpa_ref": ["First Schedule PDPA"],
+          "pdpa_status": "partial"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Consent Language",
+      "items": [
+        {
+          "id": "2.1",
+          "question": "Is consent freely given, specific, informed and unambiguous?",
+          "gdpr_ref": ["Art. 7", "Art. 4(11)"],
+          "keywords": ["you agree", "by using", "tick the box", "opt-in", "by providing"],
+          "severity": "critical",
+          "pdpa_ref": ["s13", "s20"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "2.2",
+          "question": "Can consent be withdrawn as easily as it was given?",
+          "gdpr_ref": ["Art. 7(3)"],
+          "keywords": ["withdraw", "revoke", "unsubscribe", "opt-out"],
+          "severity": "major",
+          "pdpa_ref": ["s16"],
+          "pdpa_status": "equivalent"
+        },
+        {
+          "id": "2.3",
+          "question": "Is children's consent treated separately with parental authorisation?",
+          "gdpr_ref": ["Art. 8"],
+          "keywords": ["children", "minors", "under 16", "parental consent", "child"],
+          "severity": "major",
+          "pdpa_ref": ["s13"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "2.4",
+          "question": "Is consent not conditioned on contract execution where unnecessary?",
+          "gdpr_ref": ["Art. 7(4)", "Recital 43"],
+          "keywords": ["required to proceed", "mandatory", "you must agree", "required", "necessary for service"],
+          "severity": "major",
+          "pdpa_ref": ["s13", "s18"],
+          "pdpa_status": "partial"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Data Retention",
+      "items": [
+        {
+          "id": "3.1",
+          "question": "Are retention periods specified for each category of personal data?",
+          "gdpr_ref": ["Art. 5(1)(e)"],
+          "keywords": ["retained for", "stored for", "deleted after", "kept until", "kept as long as necessary"],
+          "severity": "critical",
+          "pdpa_ref": ["s25"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "3.2",
+          "question": "Where fixed periods are not possible, are the criteria for determining duration stated?",
+          "gdpr_ref": ["Art. 13(2)(a)", "Art. 14(2)(a)"],
+          "keywords": ["criteria used to determine", "as long as necessary", "legal purposes", "business purposes"],
+          "severity": "major",
+          "pdpa_ref": ["s25"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "3.3",
+          "question": "Are deletion or anonymisation procedures at expiry described?",
+          "gdpr_ref": ["Art. 5(1)(e)", "Recital 39"],
+          "keywords": ["deleted", "anonymized", "anonymised", "erased", "purged", "remove"],
+          "severity": "major",
+          "pdpa_ref": ["s25"],
+          "pdpa_status": "partial"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Third-Party Sharing",
+      "items": [
+        {
+          "id": "4.1",
+          "question": "Are categories of third-party recipients identified?",
+          "gdpr_ref": ["Art. 13(1)(e)", "Art. 14(1)(e)"],
+          "keywords": ["third parties", "partners", "service providers", "vendors"],
+          "severity": "critical",
+          "pdpa_ref": ["s20", "s18"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "4.2",
+          "question": "Does transfer to third parties have its own legal basis?",
+          "gdpr_ref": ["Art. 6(1)", "Art. 28"],
+          "keywords": ["data processors", "on our behalf", "under our instructions", "disclose", "share"],
+          "severity": "major",
+          "pdpa_ref": ["s13", "s14", "s15", "s16", "s17"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "4.3",
+          "question": "Are data processors (or at least their categories) named?",
+          "gdpr_ref": ["Art. 28(1)"],
+          "keywords": ["processors", "sub-processors", "appointed by us", "service providers", "processing on our behalf"],
+          "severity": "major",
+          "pdpa_ref": ["PDPC Data Intermediary"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "4.4",
+          "question": "Does the policy distinguish controller-to-controller from controller-to-processor transfers?",
+          "gdpr_ref": ["Art. 4(7)-(8)", "Art. 26"],
+          "keywords": ["joint controllers", "independent controllers", "affiliates", "partners"],
+          "severity": "minor",
+          "pdpa_ref": [],
+          "pdpa_status": "absent"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Cross-Border Transfers",
+      "items": [
+        {
+          "id": "5.1",
+          "question": "Is transfer outside the EEA explicitly mentioned?",
+          "gdpr_ref": ["Art. 44"],
+          "keywords": ["transfer", "international", "outside the EEA", "third country", "outside Singapore", "overseas transfer"],
+          "severity": "critical",
+          "pdpa_ref": ["s26"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "5.2",
+          "question": "Is the adequate transfer mechanism identified?",
+          "gdpr_ref": ["Art. 45-46"],
+          "keywords": ["adequacy decision", "standard contractual clauses", "SCCs", "BCRs", "comparable protection", "contractual safeguards"],
+          "severity": "critical",
+          "pdpa_ref": ["s26", "PDPA Regulations 2021"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "5.3",
+          "question": "Where no adequacy decision exists, are appropriate safeguards indicated?",
+          "gdpr_ref": ["Art. 46(2)"],
+          "keywords": ["appropriate safeguards", "SCCs", "certification", "safeguards", "protection", "contractual obligations"],
+          "severity": "critical",
+          "pdpa_ref": ["s26"],
+          "pdpa_status": "partial"
+        },
+        {
+          "id": "5.4",
+          "question": "If derogations are used, are they limited to occasional and necessary transfers?",
+          "gdpr_ref": ["Art. 49"],
+          "keywords": ["explicit consent for transfer", "necessary for contract", "important public interest", "legal obligation"],
+          "severity": "major",
+          "pdpa_ref": ["s26"],
+          "pdpa_status": "partial"
+        }
+      ]
+    }
+  ]
+};
+
+// ─── Analyzer logic (mirrors analyzer.py) ──────────────────────────────────
+function findKeywords(text, keywords) {
+  const lower = text.toLowerCase();
+  return keywords.filter(kw => lower.includes(kw.toLowerCase()));
+}
+
+function analyze(policyText) {
+  const results = [];
+  for (const area of CHECKLIST.areas) {
+    for (const item of area.items) {
+      const found = findKeywords(policyText, item.keywords);
+      results.push({
+        area_id:        area.id,
+        area_name:      area.name,
+        item_id:        item.id,
+        question:       item.question,
+        gdpr_ref:       item.gdpr_ref,
+        pdpa_ref:       item.pdpa_ref,
+        pdpa_status:    item.pdpa_status,
+        severity:       item.severity,
+        status:         found.length > 0 ? 'found' : 'not_found',
+        found_keywords: found
+      });
+    }
+  }
+  return results;
+}
+
+function summarize(results) {
+  const total      = results.length;
+  const found      = results.filter(r => r.status === 'found').length;
+  const not_found  = total - found;
+  const critGaps   = results.filter(r => r.status === 'not_found' && r.severity === 'critical');
+  return {
+    total_items:      total,
+    found,
+    not_found,
+    coverage_percent: total > 0 ? Math.round((found / total) * 1000) / 10 : 0,
+    critical_gaps:    critGaps
+  };
+}
+
+// ─── UI helpers ─────────────────────────────────────────────────────────────
+function severityBadge(s) {
+  return `<span class="badge badge-${s}">${s}</span>`;
+}
+function statusBadge(s) {
+  const label = s === 'found' ? '✓ Found' : '✗ Not found';
+  return `<span class="badge badge-${s}">${label}</span>`;
+}
+function pdpaBadge(s) {
+  return `<span class="badge badge-${s}">${s}</span>`;
+}
+
+function progressColor(pct) {
+  if (pct >= 75) return '#38a169';
+  if (pct >= 50) return '#d69e2e';
+  return '#e53e3e';
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ─── Main render ─────────────────────────────────────────────────────────────
+function runAnalysis() {
+  const text = document.getElementById('policyText').value.trim();
+  const errEl = document.getElementById('error-msg');
+
+  if (!text) {
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  const results = analyze(text);
+  const sum     = summarize(results);
+
+  // Summary cards
+  document.getElementById('stat-total').textContent     = sum.total_items;
+  document.getElementById('stat-found').textContent     = sum.found;
+  document.getElementById('stat-not-found').textContent = sum.not_found;
+  document.getElementById('stat-critical').textContent  = sum.critical_gaps.length;
+
+  // Progress bar
+  const pct   = sum.coverage_percent;
+  const color = progressColor(pct);
+  const fill  = document.getElementById('progress-fill');
+  fill.style.width      = pct + '%';
+  fill.style.background = color;
+  document.getElementById('progress-pct').textContent    = pct + '%';
+  document.getElementById('progress-pct').style.color    = color;
+
+  // Group results by area
+  const byArea = {};
+  for (const r of results) {
+    if (!byArea[r.area_id]) byArea[r.area_id] = { name: r.area_name, items: [] };
+    byArea[r.area_id].items.push(r);
+  }
+
+  // Render area tables
+  const tablesEl = document.getElementById('area-tables');
+  tablesEl.innerHTML = '';
+
+  for (const areaId of Object.keys(byArea)) {
+    const area      = byArea[areaId];
+    const areaFound = area.items.filter(i => i.status === 'found').length;
+    const areaTotal = area.items.length;
+
+    let rows = '';
+    for (const item of area.items) {
+      const rowClass  = `row-${item.severity}`;
+      const gdprRefs  = item.gdpr_ref.join(', ');
+      const pdpaRefs  = item.pdpa_ref.length ? item.pdpa_ref.join(', ') : '—';
+      const kwHtml    = item.found_keywords.length
+        ? `<div class="keywords-list">${item.found_keywords.map(escapeHtml).join(', ')}</div>`
+        : '';
+
+      rows += `
+        <tr class="${rowClass}">
+          <td><strong>${escapeHtml(item.item_id)}</strong></td>
+          <td class="question-cell">${escapeHtml(item.question)}</td>
+          <td>${severityBadge(item.severity)}</td>
+          <td class="ref-cell">${escapeHtml(gdprRefs)}</td>
+          <td class="ref-cell">${escapeHtml(pdpaRefs)}</td>
+          <td>${pdpaBadge(item.pdpa_status)}</td>
+          <td>${statusBadge(item.status)}${kwHtml}</td>
+        </tr>`;
+    }
+
+    tablesEl.innerHTML += `
+      <div class="area-section">
+        <div class="area-header">
+          <h3>${escapeHtml(area.name)}</h3>
+          <span class="area-badge">${areaFound}/${areaTotal} found</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Check</th>
+              <th>Severity</th>
+              <th>GDPR ref</th>
+              <th>PDPA ref</th>
+              <th>PDPA status</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+  }
+
+  // Critical gaps section
+  const critEl = document.getElementById('critical-list');
+  if (sum.critical_gaps.length === 0) {
+    critEl.innerHTML = '<p class="no-gaps">No critical gaps found.</p>';
+  } else {
+    critEl.innerHTML = sum.critical_gaps.map(g => `
+      <div class="gap-item">
+        <div class="gap-id">${escapeHtml(g.item_id)} &mdash; ${escapeHtml(g.area_name)}</div>
+        <div class="gap-question">${escapeHtml(g.question)}</div>
+        <div class="gap-refs">
+          GDPR: ${escapeHtml(g.gdpr_ref.join(', '))}
+          ${g.pdpa_ref.length ? ' &bull; PDPA: ' + escapeHtml(g.pdpa_ref.join(', ')) : ''}
+        </div>
+      </div>`).join('');
+  }
+
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function clearAll() {
+  document.getElementById('policyText').value = '';
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('error-msg').style.display = 'none';
+}
+</script>
+</body>
+</html>
