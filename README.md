@@ -148,3 +148,31 @@ python3 main.py --url https://example.com/privacy --output output/myreport.html
 ## Disclaimer
 
 This tool is a student research project. It does not constitute legal advice and is not a substitute for a professional compliance audit.
+
+---
+
+## Limitations
+
+These limitations are intentionally disclosed. A tool that declares its constraints is more reliable than one that does not.
+
+**Input**
+- Requires manual text paste — the tool does not fetch URLs
+- Incomplete input produces incomplete analysis
+- Very long policies with multiple addenda may see degraded analysis quality in latter sections
+
+**Scope**
+- Covers GDPR (Regulation 2016/679) and PDPA (Singapore, as amended 2021) core obligations only
+- Does not cover: ePrivacy Directive, AI Act, NIS2, or national implementation laws (e.g. BDSG, Italian Privacy Code)
+- Area-level verdicts only — does not identify specific non-compliant clauses within an area
+- English-language policies only — analysis of other languages may produce degraded results with no warning
+
+**AI engine**
+- Requires an Anthropic API key — without it, falls back to keyword matching (v1.0 engine)
+- High confidence does not mean legal certainty — the model can misread ambiguous clauses
+- EDPB guidelines and enforcement decisions are incorporated manually, not in real time
+- Prompts reflect GDPR interpretation as of May 2026
+
+**Legal**
+- Not legal advice
+- Not a substitute for a qualified DPO or privacy lawyer
+- For professional use, treat results as a structured starting point for further analysis
