@@ -497,6 +497,7 @@
     .badge-GDPR       { background: var(--blue-bg);   color: var(--blue);   border: 1px solid rgba(96,165,250,.2); }
     .badge-PDPA       { background: rgba(167,139,250,.1); color: #a78bfa; border: 1px solid rgba(167,139,250,.2); }
     .badge-both       { background: var(--accent-glow); color: var(--accent); border: 1px solid rgba(79,110,247,.2); }
+    .badge-doctype    { background: var(--surface-2); color: var(--text-muted); border: 1px solid var(--border-light); }
     .badge-critical   { background: var(--red-bg);    color: var(--red);    border: 1px solid rgba(248,113,113,.3); }
     .badge-major      { background: var(--orange-bg); color: var(--orange); border: 1px solid rgba(251,146,60,.3); }
     .badge-minor      { background: var(--surface-2); color: var(--text-muted); border: 1px solid var(--border); }
@@ -1001,15 +1002,16 @@ async function runAIAnalysis(policyText, apiKey) {
 
       // Merge AI result with area metadata
       areaResult = {
-        area_id:    area.id,
-        area_name:  area.name,
-        engine:     'ai',
-        verdict:    aiResult.verdict,
-        confidence: aiResult.confidence,
-        excerpt:    aiResult.excerpt || null,
-        reasoning:  aiResult.reasoning,
-        framework:  aiResult.framework,
-        items:      null   // AI mode: no item-level breakdown
+        area_id:       area.id,
+        area_name:     area.name,
+        engine:        'ai',
+        document_type: aiResult.document_type || null,
+        verdict:       aiResult.verdict,
+        confidence:    aiResult.confidence,
+        excerpt:       aiResult.excerpt || null,
+        reasoning:     aiResult.reasoning,
+        framework:     aiResult.framework,
+        items:         null   // AI mode: no item-level breakdown
       };
 
       document.getElementById(`prog-name-${area.id}`).className     = 'area-progress-name done';
@@ -1116,6 +1118,17 @@ function frameworkBadge(f) {
   return `<span class="badge badge-${f}">${f}</span>`;
 }
 
+function documentTypeBadge(dt) {
+  if (!dt) return '';
+  const labels = {
+    standalone_policy: 'standalone policy',
+    addendum:           'addendum',
+    short_form_notice:  'short-form notice',
+    sector_notice:      'sector notice'
+  };
+  return `<span class="badge badge-doctype">${labels[dt] || dt}</span>`;
+}
+
 function coverageColor(pct) {
   if (pct >= 75) return '#34d399';
   if (pct >= 50) return '#fbbf24';
@@ -1181,6 +1194,11 @@ function renderResults(areaResults) {
             <span class="ai-field-label">framework</span>
             <span class="ai-field-value">${frameworkBadge(r.framework)}</span>
           </div>
+          ${r.document_type ? `
+          <div class="ai-field">
+            <span class="ai-field-label">document type</span>
+            <span class="ai-field-value">${documentTypeBadge(r.document_type)}</span>
+          </div>` : ''}
           ${r.excerpt ? `
           <div class="ai-excerpt">
             <span class="ai-field-label" style="display:block;margin-bottom:4px">excerpt</span>
